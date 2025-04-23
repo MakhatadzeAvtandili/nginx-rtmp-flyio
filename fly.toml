@@ -3,10 +3,23 @@
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'nginx-rtmp-flyio'
-primary_region = 'ams'
+app = "tvrelay"  # შეცვალე შენი Fly.io აპის სახელით
 
 [build]
+  dockerfile = "Dockerfile"
+
+[[services]]
+  internal_port = 80
+  protocol = "tcp"
+  [[services.ports]]
+    handlers = ["http"]
+    port = 80
+
+[[services]]
+  internal_port = 1935
+  protocol = "tcp"
+  [[services.ports]]
+    port = 1935
 
 [http_service]
   internal_port = 1935
